@@ -5,14 +5,18 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="tb_pessoa")
+@Entity
+@Table(name="tb_pessoa")
 public class PeopleBean implements Serializable{
 	private static final long serialVersionUID = 35128508375125660L;
 
 	@Id
-	@GeneratedValue
+	@Column(name="idPerson")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idPessoa;
 	
 	@Column(nullable = false)
