@@ -3,7 +3,6 @@ package br.com.codeslingers.repository;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -15,13 +14,15 @@ import br.com.codeslingers.beans.PeopleBean;
 public class PeopleDAOImpl extends AbstractDAO implements PeopleDAO { 
 	// PagingAndSortingRepository<PeopleBean, Integer>
 
+//	private HibernateTemplate hibernateTemplate;
+	
 	private Logger logger = Logger.getLogger(PeopleDAOImpl.class);
 
 //	
 //	private SessionFactory sessionFactory;
 //
 //	public void setSessionFactory(SessionFactory sessionFactory) {
-//		this.sessionFactory = sessionFactory;
+//		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
 //	}
 
 	@Override
@@ -36,8 +37,7 @@ public class PeopleDAOImpl extends AbstractDAO implements PeopleDAO {
 		persist(p);
 	}
 
-	@SuppressWarnings("unchecked")
-    @Override
+	@Override
     public List<PeopleBean> list() {
     	logger.info("peopleDAO.list() checkin");
     	try{
@@ -45,8 +45,9 @@ public class PeopleDAOImpl extends AbstractDAO implements PeopleDAO {
 //	        List<PeopleBean> personList = session.createQuery("from PeopleBean").list();
 //	        session.close();
 //	        return personList;
-    		Criteria criteria = getSession().createCriteria(PeopleBean.class);
-            return (List<PeopleBean>) criteria.list();
+//    		Criteria criteria = getSession().createCriteria(PeopleBean.class);
+//            return (List<PeopleBean>) criteria.list();
+    		return hibernateTemplate.loadAll(PeopleBean.class);
     	}catch(Exception ex){ 
     		ex.printStackTrace();    
     		return null;
