@@ -16,6 +16,19 @@
 		<url-pattern>/fairy/*</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>launch-resources-servlet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param> 
+			<param-name>com.sun.jersey.config.property.packages</param-name> 
+			<param-value>br.com.launch.rest</param-value> </init-param> -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>launch-resources-servlet</servlet-name>
+		<url-pattern>/service/*</url-pattern>
+	</servlet-mapping>
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/beans.xml</param-value>
