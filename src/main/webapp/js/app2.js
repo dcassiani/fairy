@@ -17,7 +17,7 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 //		var tipo = $scope.tipoList;
 		$http({
 			method:'GET', 
-			url:'service/convidado/'+target, 
+			url:'service/person/'+target, 
 			cache: false
 		})
 			.success(function (data){
@@ -29,7 +29,7 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 
 	$http({
 		method:'GET', 
-		url:'service/convidado/lista', 
+		url:'service/person/lista', 
 		cache: false
 	})
 		.success(function (data, status, headers, config){
@@ -42,6 +42,16 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 //			$scope.tipoList = $scope.tipoArr[0].val;
 //			$scope.filtroImg = $scope.imgArr[0].val;
 		});
+	
+	
+	
+	  $scope.class = "menuHide";
+	  $scope.changeClass = function(){
+	    if ($scope.class === "menuHide")
+	      $scope.class = "menuShow";
+	    else
+	      $scope.class = "menuHide";
+	  };
 
 }]);
 
