@@ -27,7 +27,7 @@ import com.google.gson.GsonBuilder;
 import com.sun.jersey.api.client.ClientResponse.Status;
 
 //@Controller
-@Path("convidado")
+@Path("person")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PeopleResources extends AbstractResources {
