@@ -5,13 +5,13 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 
 	$scope.submenuCelebArr = [ 
 		                 { label: 'Local da Cerimônia', val: '#' },  
-		           		 { label: 'Confirmação de Presença', val: '#' } 
+		           		 { label: 'Confirmar Presença', val: '#' } 
 		               ];
 	$scope.submenuTalesArr = [ 
 	 		                 { label: 'Primeiro Beijo', val: '#' }, 
 	 		                 { label: 'Sapatinho de Cristal', val: '#' }, 
 	 		                 { label: 'Amados Pais', val: '#' },  
-	 		                 { label: 'Guardiões: os Padrinhos', val: '#' },  
+	 		                 { label: 'Padrinhos', val: '#' },  
 	 		           		 { label: 'Doces Lembranças', val: '#' } 
 	 		               ];
 	
@@ -23,17 +23,7 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 	               ];
 
 	
-	
-	$scope.pagingArr = [ 
-         { label: '15', val: '15' },  
-		 { label: '50', val: '50' }, 
-		 { label: '100', val: '100' }, 
-		 { label: '500', val: '500' }, 
-		 { label: 'Todos', val: '999999999' }
-    ];
-	$scope.filterPaging = $scope.pagingArr[0].val;
-
-	$scope.loadData = function () {
+		$scope.loadData = function () {
 		var target = $scope.prodFilter;
 //		var tipo = $scope.tipoList;
 		$http({
@@ -47,6 +37,10 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 		
 	};
 	
+		
+	$scope.linkTo = function (hrefSrc) {
+		alert(hrefSrc)
+	};
 
 	$http({
 		method:'GET', 
