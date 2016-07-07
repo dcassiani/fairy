@@ -4,22 +4,22 @@ var imgScanApp = angular.module('imgScanApp', []); // declaração do modulo myA
 imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $http){
 
 	$scope.submenuCelebArr = [ 
-		                 { label: 'Local da Cerimônia', val: '#' },  
-		           		 { label: 'Confirmar Presença', val: '#' } 
+		                 { label: 'Local da Cerimônia', val: '#' ,icon:'room'},  
+		           		 { label: 'Confirmar Presença', val: '#' ,icon:'assignment turned in'} 
 		               ];
 	$scope.submenuTalesArr = [ 
-	 		                 { label: 'Primeiro Beijo', val: '#' }, 
-	 		                 { label: 'Sapatinho de Cristal', val: '#' }, 
-	 		                 { label: 'Amados Pais', val: '#' },  
-	 		                 { label: 'Padrinhos', val: '#' },  
-	 		           		 { label: 'Doces Lembranças', val: '#' } 
+	 		                 { label: 'Primeiro Beijo', val: '#' ,icon:'favorite_border'}, 
+	 		                 { label: 'Sapatinho de Cristal', val: '#' ,icon:'loyalty'}, 
+	 		                 { label: 'Amados Pais', val: '#' ,icon:'account_circle'},  
+	 		                 { label: 'Padrinhos', val: '#' ,icon:'face'},  
+	 		           		 { label: 'Doces Lembranças', val: '#' ,icon:'class'} 
 	 		               ];
 	
 	$scope.menuArr = [ 
-	                 { label: 'Início', val: '#' }, 
-	                 { label: 'Celebração', val: '#' , submenu: $scope.submenuCelebArr},  
-	           		 { label: 'Conto de Fadas', val: '#' , submenu: $scope.submenuTalesArr}, 
-	           		 { label: 'Presentes', val: '#' }
+	                 { label: 'Era uma vez...', val: '#' ,icon:'favorite'}, 
+	                 { label: 'Celebração', val: '#' , submenu: $scope.submenuCelebArr, icon:'account_balance'},  
+	           		 { label: 'Conto de Fadas', val: '#' , submenu: $scope.submenuTalesArr , icon:'local_movies'}, 
+	           		 { label: 'Presentes', val: '#' , icon:'card_giftcard'}
 	               ];
 
 	

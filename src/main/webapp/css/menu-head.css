@@ -1,0 +1,101 @@
+
+#mainHead{
+    background-color: #efff72;
+    padding: 0px;
+	display: table;
+	box-sizing: border-box;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px; 
+}
+
+#headWrapper{
+	height: 60px; 
+}
+
+#menu ul{
+	display: inline-table;
+    width: 190px;
+}
+
+#menu  * li{
+    text-align: center;
+}
+	
+#menu * button{
+	font-style: italic;
+	font-weight: bold;
+	text-decoration: none;
+	color: #ee009f;
+    background-color: transparent;
+    border-style: none;
+    width: 100%;
+    position: relative;
+  	padding-top: 13px;
+  	padding-bottom: 13px;
+  	padding-left: 5px;
+  	padding-right: 5px;
+  	text-align: center;
+}
+
+@media (min-width: 600px) {
+	#contentBox {
+		width: 250px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#logo{
+		display:none;
+	}
+	#menu{
+	    margin-left: 5px;
+	    margin-right: 5px;
+	    margin-bottom: 0px;
+	    margin-top: 0px;
+	    padding: 0;
+	}
+ 
+
+#menu * li .submenu{
+	visibility: hidden;
+}
+#menu * li:HOVER .submenu{
+	visibility: visible;
+}
+
+}
+	
+#menu ul li:HOVER > button{	
+	background-color: #f7ffb8;
+	cursor: pointer;
+}
+
+
+
+.submenu ul{
+	background-color: #fdf99c;
+	overflow: visible;
+	position: absolute;
+	padding: 0px;
+	display: list-item !important;
+}
+
+.submenu ul li{
+	display: block;
+	border-bottom-width: 3px;
+    border-bottom-color: #e3dd51;
+    margin: 0px;
+    border-bottom-style: double;
+}
+
+
+
+.submenu button {
+    padding-top: 13px !important;
+  	padding-bottom: 13px !important ;
+  	padding-left: 35px !important;
+  	padding-right: 5px !important;
+  	position: relative;
+}
+

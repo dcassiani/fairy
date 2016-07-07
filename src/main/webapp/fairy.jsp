@@ -5,9 +5,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Be My Princess...</title>
 <link rel="shortcut icon" href="favicon.ico">
-<link href="styles.css" rel="stylesheet" type="text/css" media="print"/>
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/style-forms.css">
+<link href="style-forms.css" rel="stylesheet" type="text/css" media="print"/>
+<link rel="stylesheet" href="css/mod-core-html.css">
+<link rel="stylesheet" href="css/menu-head.css">
+<link rel="stylesheet" href="css/media-mobile.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="text/javascript" src="js/angular-1.2.0-rc.2/angular.js"></script>
 <script type="text/javascript" src="js/fairy.js" charset="UTF-8"></script>
 <script>
@@ -23,54 +25,6 @@ http://www.color-hex.com/color-palette/2338
 	#ee009f	pink
 */
 
-@media (max-width: 600px) {
-  #contentBox {
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #menu{
-    width: 90%;
-    position: fixed;
-  }
-	
-	button.menu {
-	    background-color: transparent;
-	    border-style: none;
-	    height: 50px;
-	    width: 34px;
-	}
-	button img {
-	    height: 24px;
-	    width: 24px;
-	}
-	
-	button.menu:ACTIVE{	
-		background-color: rgba(255, 255, 255, 0.2)
-	}
-
-}
-
-
-body {
-    direction: ltr;
-    font-family: 'Roboto','Droid Sans',arial,sans-serif;
-    font-size: 15px;
-    margin: 0;
-    min-width: 300px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 0;
-}
-
-ul{
-	list-style-type: none;
-	padding-left:0;
-}
-
-li{
-	padding-left:0;
-}
 
 @media (min-width: 600px) {
 	#contentBox {
@@ -104,98 +58,6 @@ box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
 margin: 8px;
 }
 
-#mainHead{
-    background-color: #efff72;
-    padding: 0px;
-	display: table;
-	box-sizing: border-box;
-    position: fixed;
-    width: 100%;
-    height: 50px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px; 
-}
-
-#headWrapper{
-	height: 60px; 
-}
-
-
-
-
-#menu ul{
-	display: inline-table;
-    width: 190px;
-}
-
-#menu  * li{
-    text-align: center;
-}
-	
-#menu * button{
-	font-style: italic;
-	font-weight: bold;
-	text-decoration: none;
-	color: #ee009f;
-    background-color: transparent;
-    border-style: none;
-    width: 100%;
-    position: relative;
-  	padding-top: 13px;
-  	padding-bottom: 13px;
-  	padding-left: 5px;
-  	padding-right: 5px;
-  	text-align: center;
-}
-	
-#menu * button:HOVER{	
-	background-color: #f7ffb8;
-	cursor: pointer;
-	
-}
-
-.submenu ul{
-	background-color: #fdf99c;
-	overflow: visible;
-	position: absolute;
-	padding: 0px;
-	display: list-item !important;
-}
-
-.submenu ul li{
-	display: block;
-	border-bottom-width: 3px;
-    border-bottom-color: #e3dd51;
-    margin: 0px;
-    border-bottom-style: double;
-}
-
-	.menuHide{
-		visibility: hidden;
-	}
-	.menuShow{
-		visibility: visible;
-	}
-
-
-.submenu span button {
-    padding-top: 13px !important;
-  	padding-bottom: 13px !important ;
-  	padding-left: 35px !important;
-  	padding-right: 5px !important;
-  	position: relative;
-  	
-}
-.submenu button svg {
-    height: 24px;
-    width: 24px;
-    position: absolute;
-	left: 6px;
-	top: 50%;
-	transform: translateY(-50%);
-	fill: #fa3a66;
-}
-
-
 
 
 
@@ -212,22 +74,22 @@ margin: 8px;
 		</button>
 	</div>
 
-	<div id="menu">
+	<div id="menu" ng-class="subItemVisibility">
 		
 	    <ul ng-repeat="item in menuArr">
-          <li  class="submenu">
-          	<button ng-click="changeClass()">{{ item.label }}</button>
+          <li >
+          	<button ng-click="item.submenu==null && linkTo(item.val)">
+          		<i ng-show="item.icon != null"  class="material-icons md-24">{{ item.icon }}</i>
+          		{{ item.label }}
+          	</button>
           	
-          	<span ng-show="item.submenu != null">
+          	<span ng-show="item.submenu != null" class="submenu">
           		<br />
-	          	<ul ng-class="subItemVisibility">
+	          	<ul>
 	          		<li ng-repeat="subitem in item.submenu">
 
 	          				<button ng-click="linkTo(subitem.val)">
-	          				<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-								<path d="m6 19c0 1.1 0.9 2 2 2h8c1.1 0 2-0.9 2-2v-12h-12v12zm13-15h-3.5l-1-1h-5l-1 1h-3.5v2h14v-2z">
-								<path fill="none" d="m0 0h24v24h-24z">
-							</svg>								
+	          					<i ng-show="subitem.icon != null"  class="material-icons md-24">{{ subitem.icon }}</i>						
 								{{ subitem.label }}
 							</button>
 	          		
