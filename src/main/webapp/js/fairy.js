@@ -1,42 +1,6 @@
-// invocado pelo angular.module('imgScanApp') e pelo próprio .run()
-var imgScanApp = angular.module('imgScanApp', []); // declaração do modulo myApp
+var imgScanApp = angular.module('imgScanApp', []); 
 
 imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $http){
-
-	$scope.submenuCelebArr = [ 
-		                 { label: 'Local da Cerimônia', val: '#' ,icon:'room'},  
-		           		 { label: 'Confirmar Presença', val: '#' ,icon:'assignment turned in'} 
-		               ];
-	$scope.submenuTalesArr = [ 
-	 		                 { label: 'Primeiro Beijo', val: '#' ,icon:'favorite_border'}, 
-	 		                 { label: 'Sapatinho de Cristal', val: '#' ,icon:'loyalty'}, 
-	 		                 { label: 'Amados Pais', val: '#' ,icon:'account_circle'},  
-	 		                 { label: 'Padrinhos', val: '#' ,icon:'face'},  
-	 		           		 { label: 'Doces Lembranças', val: '#' ,icon:'class'} 
-	 		               ];
-	
-	$scope.menuArr = [ 
-	                 { label: 'Era uma vez...', val: '#' ,icon:'favorite'}, 
-	                 { label: 'Celebração', val: '#' , submenu: $scope.submenuCelebArr, icon:'account_balance'},  
-	           		 { label: 'Conto de Fadas', val: '#' , submenu: $scope.submenuTalesArr , icon:'local_movies'}, 
-	           		 { label: 'Presentes', val: '#' , icon:'card_giftcard'}
-	               ];
-
-	
-		$scope.loadData = function () {
-		var target = $scope.prodFilter;
-//		var tipo = $scope.tipoList;
-		$http({
-			method:'GET', 
-			url:'service/person/'+target, 
-			cache: false
-		})
-			.success(function (data){
-				$scope.convidado = angular.fromJson(data);
-			});
-		
-	};
-	
 		
 	$scope.linkTo = function (hrefSrc) {
 		alert(hrefSrc)
@@ -44,18 +8,12 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 
 	$http({
 		method:'GET', 
-		url:'service/person/lista', 
+		url:'fairy/menu/main', 
 		cache: false
 	})
 		.success(function (data, status, headers, config){
-			$scope.prodArr = angular.fromJson(data);
-			
-			$scope.prodFilter = $scope.prodArr[0].value;
-			
-			$scope.loadData();
-			// initial Load
-//			$scope.tipoList = $scope.tipoArr[0].val;
-//			$scope.filtroImg = $scope.imgArr[0].val;
+			$scope.menuArr = angular.fromJson(data);
+
 		});
 	
 	
