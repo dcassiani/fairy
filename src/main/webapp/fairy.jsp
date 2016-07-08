@@ -41,6 +41,7 @@ http://www.color-hex.com/color-palette/2338
 	    margin-bottom: 0px;
 	    margin-top: 0px;
 	    padding: 0;
+	    z-index: 100;
 	}
  
 
@@ -59,8 +60,80 @@ margin: 8px;
 }
 
 
-
-
+.section-header {
+    height: 488px;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+.img-hero {
+    height: auto;
+    left: 0;
+    min-width: 1200px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    border: 0 none;
+    vertical-align: middle;
+}
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 960px;
+    clear: both;
+}
+.row {
+    margin-left: -10px;
+    margin-right: -10px;
+    clear: both;
+}
+.col-xs-16 {
+    width: 100%;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+}
+.wrapper-header {
+    text-align: center;
+}
+.logo-header {
+    left: 50%;
+    margin-left: -100px;
+    position: absolute;
+    top: 30px;
+    vertical-align: middle;
+    border: 0 none;
+}
+.box-table {
+    height: 488px;
+    display: table;
+    width: 100%;
+}
+.box-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.wrapper-header h1 {
+    color: #fff;
+    font-family: "Open Sans",sans-serif;
+    font-size: 46px;
+    font-weight: 300;
+    line-height: 57px;
+    margin: 20px 0 0;
+    padding: 0 120px;
+    text-transform: uppercase;
+}
+.wrapper-header h2 {
+    color: #fff;
+    font-family: "Source Serif Pro",serif;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 18px 0 0;
+    padding: 0 60px;
+}
 </style>
 
 </head>
@@ -100,6 +173,27 @@ margin: 8px;
         </ul>
 
 	</div>
+	
+	<div class="section-header">
+	                
+         <img class="img-hero" alt="A Petrobras vai subir ou cair?" src="//www.tororadar.com.br/hubfs/Outbrain_artigos/images/hero-img-petrobras.jpg?t=1467924785114">
+ 
+         <div class="container">
+             <div class="row">
+                 <div class="col-xs-16">
+                     <div class="wrapper-header">
+                         <img class="logo-header" alt="Toro Radar - Vença na Bolsa de Valores" src="//www.tororadar.com.br/hubfs/Outbrain_artigos/images/logo-toro-radar.png?t=1467924785114">
+                         <div class="box-table">
+                             <div class="box-table-cell">
+                                 <h1>A Petrobras vai subir ou cair?</h1>
+                                 <h2>Saiba se chegou a hora de comprar ações da PETR4.</h2>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
 </div>
 
 <div id="maindFooter">

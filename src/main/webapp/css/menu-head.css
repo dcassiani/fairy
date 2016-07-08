@@ -79,6 +79,7 @@
 	position: absolute;
 	padding: 0px;
 	display: list-item !important;
+	z-index: 100;
 }
 
 .submenu ul li{
