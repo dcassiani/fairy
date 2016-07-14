@@ -2,6 +2,7 @@ package br.com.codeslingers.beans;
 
 import java.io.Serializable;
 
+import javax.enterprise.inject.Model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Model
 @Entity
 @Table(name="tb_pessoa")
 public class PeopleBean implements Serializable{

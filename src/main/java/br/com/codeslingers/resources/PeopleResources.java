@@ -33,8 +33,8 @@ public class PeopleResources extends AbstractResources {
 	
 	private Logger logger = Logger.getLogger(PeopleResources.class);
 	
-	@Inject
-	PeopleDAO peopleDAO;
+//	@Inject
+//	PeopleDAO peopleDAO;
 
 	@RequestMapping("/")
     @ResponseBody
@@ -47,7 +47,7 @@ public class PeopleResources extends AbstractResources {
     @GET
     @Path("lista")
     public Response getListarConvidados(@Context Request request) {
-    	logger.info("[DEV] getListarConvidados");
+    	logger.info("[DEV] br.com.codeslingers.resources getListarConvidados");
     	Gson gsonBuilder = new GsonBuilder().create();
 		try {
 
@@ -74,7 +74,7 @@ public class PeopleResources extends AbstractResources {
 	    	b1.setNome("Fernanda");
 	    	retorno.add(b1);
 	    	
-	    	retorno.addAll(peopleDAO.list());
+//	    	retorno.addAll(peopleDAO.list());
 	    			
 			return setResponseWithCacheHeaders(Status.OK, gsonBuilder.toJson(retorno), request);
 		} catch (Exception e) {

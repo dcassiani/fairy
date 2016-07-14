@@ -9,17 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="tb_pessoa")
+//@Entity
+//@Table(name="tb_pessoa")
 public class ProductBean implements Serializable{
 	private static final long serialVersionUID = 35128508375125660L;
 
-	@Id
-	@Column(name="idPerson")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@Id
+//	@Column(name="idPerson")
+//	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idPessoa;
 	
-	@Column(nullable = false)
+//	@Column(nullable = false)
 	private String nome;
 	
 	public Integer getIdPessoa() {

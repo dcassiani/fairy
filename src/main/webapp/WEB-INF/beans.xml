@@ -11,7 +11,8 @@
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
     	http://www.springframework.org/schema/context">
  
-	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<!-- bean id="fairyDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
+	<bean id="fairyDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/fairydb" />
 		<property name="username" value="fairy_user" />
@@ -20,28 +21,32 @@
 
 
 	<bean id="mySessionFactory"
-		class="org.springframework.orm.hibernate4.HibernateTemplate">
-		<property name="dataSource" ref="myDataSource" />
-		<property name="annotatedClasses">
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="fairyDataSource" />
+		<property name="packagesToScan" value="br.com.codeslingers.beans" />
+		<!-- property name="annotatedClasses">
 			<list>
 				<value>br.com.codeslingers.beans.PeopleBean</value>
 			</list>
-		</property>
+		</property-->
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.connection.charSet">UTF-8</prop>
 				<prop key="hibernate.current_session_context_class">thread</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
 			</props>
 		</property>
 	</bean>
 
-	<!-- bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 	    <property name="sessionFactory" ref="mySessionFactory" />
-	</bean-->
+	</bean>
 
 	<bean id="peopleDAO" class="br.com.codeslingers.repository.PeopleDAOImpl">
-		<property name="hibernateTemplate" ref="mySessionFactory" />
+		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
 
 <tx:annotation-driven/>

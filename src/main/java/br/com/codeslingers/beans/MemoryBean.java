@@ -12,14 +12,14 @@ import javax.persistence.Table;
 
 import br.com.codeslingers.beans.enums.MemoryTypeEnum;
 
-@Entity
-@Table(name="tb_memory")
+//@Entity
+//@Table(name="tb_memory")
 public class MemoryBean implements Serializable{
 	private static final long serialVersionUID = 35128508375125660L;
 
-	@Id
-	@Column(name="idMemory")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@Id
+//	@Column(name="idMemory")
+//	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idMemory;
 	
 	private String title;

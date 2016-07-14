@@ -1,9 +1,9 @@
-package br.com.launch.rest;
+package br.com.codeslingers.resources;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//import javax.inject.Inject;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,28 +14,25 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
-import br.com.launch.bean.AbstractSelectOption;
-import br.com.launch.bean.PeopleBean;
+import org.apache.log4j.Logger;
+
+import br.com.codeslingers.beans.AbstractSelectOption;
+import br.com.codeslingers.beans.PeopleBean;
+import br.com.codeslingers.repository.PeopleDAO;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-//import org.apache.log4j.Logger;
-//import org.springframework.stereotype.Controller;
-//
-//import br.com.codeslingers.beans.PeopleBean;
-//import br.com.codeslingers.repository.PeopleDAO;
 import com.sun.jersey.api.client.ClientResponse.Status;
 
-//@Controller
 @Path("person")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class PeopleResources extends AbstractResources {
+public class PersonResources extends AbstractResources {
 	
-//	private Logger logger = Logger.getLogger(PeopleResources.class);
+	private Logger logger = Logger.getLogger(PersonResources.class);
 	
-//	@Inject
-//	PeopleDAO peopleDAO;
+	@Inject	
+	PeopleDAO peopleDAO;
 
 	
     @GET
@@ -46,10 +43,8 @@ public class PeopleResources extends AbstractResources {
 		try {
 			
 	    	PeopleBean b1 = new PeopleBean();
-	    	b1.setAge(32);
-	    	b1.setName(name);
-	    	b1.setCountry("Brasil");
-	    	b1.setPicturePath("/img/pi1.jpg");
+	    	b1.setNome(name);
+	    	b1.setIdPessoa(2);
 
 	    	
 			return setResponseWithCacheHeaders(Status.OK, gsonBuilder.toJson(b1), request);
@@ -63,7 +58,7 @@ public class PeopleResources extends AbstractResources {
     @GET
     @Path("lista")
     public Response getListarConvidados(@Context Request request) {
-//    	logger.info("[DEV] getListarConvidados");
+    	logger.info("[DEV] br.com.launch.rest getListarConvidados");
     	Gson gsonBuilder = new GsonBuilder().create();
 		try {
 
@@ -83,17 +78,14 @@ public class PeopleResources extends AbstractResources {
 //		    
 //			peopleDAO.findAll(pageable);
 			
-	    	List<AbstractSelectOption> retorno = new ArrayList<AbstractSelectOption>();
-	    	retorno.add(new AbstractSelectOption("Fernanda"));
-	    	retorno.add(new AbstractSelectOption("Daniel"));
-	    	retorno.add(new AbstractSelectOption("Raquel"));
-	    	retorno.add(new AbstractSelectOption("Thiago"));
-//	    	PeopleBean b1 = new PeopleBean();
-//	    	b1.setIdPessoa(1);
-//	    	b1.setNome("Fernanda");
-//	    	retorno.add(b1);
+//	    	List<AbstractSelectOption> retorno = new ArrayList<AbstractSelectOption>();
+//	    	retorno.add(new AbstractSelectOption("Fernanda"));
+//	    	retorno.add(new AbstractSelectOption("Daniel"));
+//	    	retorno.add(new AbstractSelectOption("Raquel"));
+//	    	retorno.add(new AbstractSelectOption("Thiago"));
+
 //	    	
-//	    	retorno.addAll(peopleDAO.list());
+	    	List<AbstractSelectOption> retorno = mapFromPeople(peopleDAO.list());
 	    			
 			return setResponseWithCacheHeaders(Status.OK, gsonBuilder.toJson(retorno), request);
 		} catch (Exception e) {
@@ -101,5 +93,18 @@ public class PeopleResources extends AbstractResources {
 			return setResponseWithCacheHeaders(Status.INTERNAL_SERVER_ERROR, gsonBuilder.toJson(e.getMessage()), request);
 		}
     }
+
+
+	private List<AbstractSelectOption> mapFromPeople(
+			List<br.com.codeslingers.beans.PeopleBean> list) {
+
+		List<AbstractSelectOption> retorno = new ArrayList<AbstractSelectOption>();
+		
+		for (br.com.codeslingers.beans.PeopleBean vo: list){
+			retorno.add(new AbstractSelectOption(vo.getNome()));
+		}
+
+		return retorno;
+	}
     
 }

@@ -1,4 +1,4 @@
-package br.com.launch.bean;
+package br.com.codeslingers.beans;
 
 import java.io.Serializable;
 

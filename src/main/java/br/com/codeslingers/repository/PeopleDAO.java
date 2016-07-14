@@ -4,7 +4,6 @@ import java.util.List;
 
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.Pageable;
-
 import br.com.codeslingers.beans.PeopleBean;
 
 public interface PeopleDAO{
@@ -13,6 +12,6 @@ public interface PeopleDAO{
 
 	public List<PeopleBean> list();
 
-	public void save(PeopleBean p);
+//	public void save(PeopleBean p);
 
 }
