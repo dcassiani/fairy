@@ -30,6 +30,18 @@ public class MenuLink  implements Serializable{
 
 
 
+	public MenuLink(String label, String val) {
+		super();
+		this.label = label;
+		this.val = val;
+	}
+
+	public MenuLink(String label, List<MenuLink> submenu) {
+		super();
+		this.label = label;
+		this.submenu = submenu;
+	}
+	
 	public String getLabel() {
 		return label;
 	}

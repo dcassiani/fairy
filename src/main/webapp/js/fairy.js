@@ -16,6 +16,16 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 
 		});
 	
+	$http({
+		method:'GET', 
+		url:'fairy/person/lista', 
+		cache: false
+	})
+		.success(function (data, status, headers, config){
+			$scope.prodArr = angular.fromJson(data);
+			$scope.prodFilter = $scope.prodArr[0].value;
+		});
+	
 	
 	
 	  $scope.subItemVisibility = "menuHide";

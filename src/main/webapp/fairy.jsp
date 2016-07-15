@@ -182,11 +182,14 @@ margin: 8px;
              <div class="row">
                  <div class="col-xs-16">
                      <div class="wrapper-header">
-                         <img class="logo-header" alt="Toro Radar - Vença na Bolsa de Valores" src="//www.tororadar.com.br/hubfs/Outbrain_artigos/images/logo-toro-radar.png?t=1467924785114">
+                         <img class="logo-header" src="//www.tororadar.com.br/hubfs/Outbrain_artigos/images/logo-toro-radar.png?t=1467924785114">
                          <div class="box-table">
                              <div class="box-table-cell">
-                                 <h1>A Petrobras vai subir ou cair?</h1>
-                                 <h2>Saiba se chegou a hora de comprar ações da PETR4.</h2>
+                                 <h1>Ypoasd aspdi</h1>
+                                 <h2>balkus asdasl  asdjbl</h2>
+                                 Ahkad <select name="selProds" ng-model="prodFilter" 
+										ng-options="prod.value as prod.label for prod in prodArr" >
+								  </select>
                              </div>
                          </div>
                      </div>

@@ -41,6 +41,9 @@ public class MenuResources extends AbstractResources {
 			List<MenuLink> submenuCelebArr = new ArrayList<MenuLink>();
 			submenuCelebArr.add(new MenuLink( "Local da Cerimônia", "#", "room"));  
 			submenuCelebArr.add(new MenuLink( "Confirmar Presença", "#", "assignment turned in")); 
+			submenuCelebArr.add(new MenuLink( "Cardápio", "#"));
+			submenuCelebArr.add(new MenuLink( "Solicitar Cardápio Especial", "#")); //alergenos, gluten, lactose, dieta
+			submenuCelebArr.add(new MenuLink( "Confirmar Presença", "#")); //save the date calendar SPAM, com recall 1 mês antes
 
 			List<MenuLink> submenuTalesArr = new ArrayList<MenuLink>(); 
 			submenuTalesArr.add(new MenuLink( "Primeiro Beijo", "#", "favorite_border")); 

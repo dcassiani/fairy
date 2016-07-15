@@ -17,7 +17,7 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 //		var tipo = $scope.tipoList;
 		$http({
 			method:'GET', 
-			url:'service/person/'+target, 
+			url:'fairy/person/'+target, 
 			cache: false
 		})
 			.success(function (data){
@@ -29,7 +29,7 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 
 	$http({
 		method:'GET', 
-		url:'service/person/lista', 
+		url:'fairy/person/lista', 
 		cache: false
 	})
 		.success(function (data, status, headers, config){
