@@ -1,21 +1,29 @@
 @media (max-width: 600px) {
-  #contentBox {
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #menu{
-    width: 90%;
-    position: fixed;
-    z-index: 100;
-  }
 	
+	#contentBox {
+	  width: 200px;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+	
+	#menu{
+	  width: 100%;
+	  position: fixed;
+	  z-index: 100;
+	}
+		
 	button.menu {
 	    background-color: transparent;
 	    border-style: none;
 	    height: 50px;
 	    width: 34px;
 	}
+	
+	#menu ul {
+	    display: inline-table;
+	    width: 100%;
+	}
+	
 	button img {
 	    height: 24px;
 	    width: 24px;
@@ -24,11 +32,11 @@
 	button.menu:ACTIVE{	
 		background-color: rgba(255, 255, 255, 0.2)
 	}
-	
-	
+		
 	.menuHide{
 		visibility: hidden;
 	}
+	
 	.menuShow{
 		visibility: visible;
 	}
