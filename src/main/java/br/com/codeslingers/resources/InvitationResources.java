@@ -15,7 +15,6 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
 
 import br.com.codeslingers.beans.PeopleBean;
 
@@ -23,7 +22,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.jersey.api.client.ClientResponse.Status;
 
-@Controller
 @Path("convite")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)

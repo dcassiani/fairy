@@ -3,7 +3,9 @@ package br.com.codeslingers.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.inject.Any;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -15,10 +17,12 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 
 import br.com.codeslingers.beans.AbstractSelectOption;
 import br.com.codeslingers.beans.PeopleBean;
-import br.com.codeslingers.repository.PeopleDAO;
+import br.com.codeslingers.hibernate.HibernateUtil;
+import br.com.codeslingers.repository.PeopleDAOImpl;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -31,8 +35,9 @@ public class PersonResources extends AbstractResources {
 	
 	private Logger logger = Logger.getLogger(PersonResources.class);
 	
-	@Inject	
-	PeopleDAO peopleDAO;
+	@Inject @Any
+	@Named("peopleDAO")	
+	private PeopleDAOImpl peopleDAO;
 
 	
     @GET
@@ -85,22 +90,31 @@ public class PersonResources extends AbstractResources {
 //	    	retorno.add(new AbstractSelectOption("Thiago"));
 
 //	    	
-	    	List<AbstractSelectOption> retorno = mapFromPeople(peopleDAO.list());
-	    			
+			Session session = null;
+			if (HibernateUtil.getSessionFactory().isClosed()){
+				session = HibernateUtil.getSessionFactory().openSession();
+			} else {
+				session = HibernateUtil.getSessionFactory().getCurrentSession();
+			}
+			
+			session.beginTransaction();
+//			
+	    	List<AbstractSelectOption> retorno = mapFromPeople(session.createCriteria(PeopleBean.class).list());
+//	    	tx.commit();
 			return setResponseWithCacheHeaders(Status.OK, gsonBuilder.toJson(retorno), request);
 		} catch (Exception e) {
-//			logger.error("Exception ", e);			
+			logger.error("Exception ", e);			
 			return setResponseWithCacheHeaders(Status.INTERNAL_SERVER_ERROR, gsonBuilder.toJson(e.getMessage()), request);
 		}
     }
 
 
 	private List<AbstractSelectOption> mapFromPeople(
-			List<br.com.codeslingers.beans.PeopleBean> list) {
+			List<PeopleBean> list) {
 
 		List<AbstractSelectOption> retorno = new ArrayList<AbstractSelectOption>();
 		
-		for (br.com.codeslingers.beans.PeopleBean vo: list){
+		for (PeopleBean vo: list){
 			retorno.add(new AbstractSelectOption(vo.getNome()));
 		}
 
