@@ -18,11 +18,11 @@
 <style type="text/css">
 /*
 http://www.color-hex.com/color-palette/2338
-	#efff72 yellow
+	#efff72 yellow > #f0b33f
 	#ff9c15 orange
 	#189eff blue
 	#130606 black
-	#ee009f	pink
+	#ee009f	pink > #f05a3f
 */
 
 
@@ -134,6 +134,18 @@ margin: 8px;
     margin: 18px 0 0;
     padding: 0 60px;
 }
+
+#mainFooter{
+	background-color: #4b4c4e;
+}
+
+#disclaimer{
+	color: white;	
+}
+
+#disclaimer b{
+	color: #f05a3f;	
+}
 </style>
 
 </head>
@@ -199,12 +211,13 @@ margin: 8px;
      </div>
 </div>
 
-<div id="maindFooter">
+<div id="mainFooter">
 
 	<div id="quickLinks">
 	</div>
 
 	<div id="disclaimer">
+		made in <b>China</b>
 	</div>
 
 </div>

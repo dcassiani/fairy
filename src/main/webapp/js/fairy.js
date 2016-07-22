@@ -8,7 +8,7 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 
 	$http({
 		method:'GET', 
-		url:'fairy/menu/main', 
+		url:'service/menu/main', 
 		cache: false
 	})
 		.success(function (data, status, headers, config){
@@ -18,7 +18,7 @@ imgScanApp.controller('ImgScanControl',  ['$scope', '$http', function($scope, $h
 	
 	$http({
 		method:'GET', 
-		url:'fairy/person/lista', 
+		url:'service/person/lista', 
 		cache: false
 	})
 		.success(function (data, status, headers, config){

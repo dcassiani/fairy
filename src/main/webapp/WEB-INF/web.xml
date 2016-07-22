@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- This web.xml file is not required when using Servlet 3.0 container, 
-	see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html#d4e194 -->
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-		
-	
-	<servlet>
-		<servlet-name>fairy-resources-servlet</servlet-name>
-		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-		<!-- uncomment for non JBOSS webservers <init-param> <param-name>com.sun.jersey.config.property.packages</param-name> 
-			<param-value>br.com.codeslingers.resources</param-value> </init-param> -->
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>fairy-resources-servlet</servlet-name>
-		<url-pattern>/fairy/*</url-pattern>
-	</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
 
+	<resource-ref>
+		<description>MySQL DB Connection</description>
+		<res-ref-name>jdbc/fairydb</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
 
 	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/beans.xml</param-value>
+		<param-name>containerConfigXML</param-name>
+		<param-value>/META-INF/context.xml</param-value>
 	</context-param>
 
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	<servlet>
+		<servlet-name>REST-resources-servlet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>br.com.codeslingers.resources</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>REST-resources-servlet</servlet-name>
+		<url-pattern>/service/*</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
 
 	<welcome-file-list>
 		<welcome-file>fairy.jsp</welcome-file>
