@@ -1,9 +1,14 @@
 package br.com.codeslingers.resources;
 
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,18 +19,13 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.codeslingers.beans.PeopleBean;
-import br.com.codeslingers.repository.PeopleDAO;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.jersey.api.client.ClientResponse.Status;
 
-@Controller
 @Path("convidado")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -36,12 +36,7 @@ public class PeopleResources extends AbstractResources {
 //	@Inject
 //	PeopleDAO peopleDAO;
 
-	@RequestMapping("/")
-    @ResponseBody
-    String home() {
-		logger.info("[DEV] home");
-        return "Hello World!";
-    }
+
 
     
     @GET
@@ -67,14 +62,35 @@ public class PeopleResources extends AbstractResources {
 //		    
 //			peopleDAO.findAll(pageable);
 			
-	    	List<PeopleBean> retorno = new ArrayList<PeopleBean>();
-	    	
-	    	PeopleBean b1 = new PeopleBean();
-	    	b1.setIdPessoa(1);
-	    	b1.setNome("Fernanda");
-	    	retorno.add(b1);
+//	    	List<PeopleBean> retorno = new ArrayList<PeopleBean>();
+//	    	
+//	    	PeopleBean b1 = new PeopleBean();
+//	    	b1.setIdPessoa(1);
+//	    	b1.setNome("Fernanda");
+//	    	retorno.add(b1);
 	    	
 //	    	retorno.addAll(peopleDAO.list());
+	    	
+	    	javax.naming.Context ctx = null;
+			Connection con = null;
+			Statement stmt = null;
+			ResultSet rs = null;
+//			try{
+				ctx = new InitialContext();
+				DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/fairydb");
+				
+				con = ds.getConnection();
+				stmt = con.createStatement();
+				
+				rs = stmt.executeQuery("select idPerson, nome from tb_pessoa");
+				
+				List<PeopleBean> retorno = new ArrayList<PeopleBean>();
+	            while(rs.next()) {
+	            	PeopleBean b1 = new PeopleBean();
+	    	    	b1.setIdPessoa(rs.getInt("idPerson"));
+	    	    	b1.setNome(rs.getString("nome"));
+	    	    	retorno.add(b1);
+	            }
 	    			
 			return setResponseWithCacheHeaders(Status.OK, gsonBuilder.toJson(retorno), request);
 		} catch (Exception e) {

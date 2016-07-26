@@ -3,9 +3,6 @@ package br.com.codeslingers.resources;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.inject.Any;
-import javax.inject.Inject;
-import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,12 +14,10 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
 
 import br.com.codeslingers.beans.AbstractSelectOption;
 import br.com.codeslingers.beans.PeopleBean;
-import br.com.codeslingers.hibernate.HibernateUtil;
-import br.com.codeslingers.repository.PeopleDAOImpl;
+import br.com.codeslingers.repository.PeopleDAO;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,9 +30,8 @@ public class PersonResources extends AbstractResources {
 	
 	private Logger logger = Logger.getLogger(PersonResources.class);
 	
-	@Inject @Any
-	@Named("peopleDAO")	
-	private PeopleDAOImpl peopleDAO;
+//	@Inject	
+	private PeopleDAO peopleDAO = new PeopleDAO();
 
 	
     @GET
@@ -65,42 +59,10 @@ public class PersonResources extends AbstractResources {
     public Response getListarConvidados(@Context Request request) {
     	logger.info("[DEV] br.com.launch.rest getListarConvidados");
     	Gson gsonBuilder = new GsonBuilder().create();
+    	List<AbstractSelectOption> retorno = new ArrayList<AbstractSelectOption>();
+    	
 		try {
-
-//			UserDTO user = recentPurchaseBusiness.getUser(username);
-//			if (user == null) {
-//				logger.info(" GET /recent_purchases/"+ username +" ENDED - NOT SUCH USER");
-//				return setResponseWithCacheHeaders(Status.OK, gsonBuilder
-//						.toJson(USER_NOT_FOUND.replace("{username}", username)), request);
-//			}
-//
-//			List<RecentPurchaseDTO> ret = recentPurchaseBusiness
-//					.getRecentPurchaseList(user);
-
-//			int page = 1;
-//		    int pageSize = 10;
-//		    Pageable pageable = new PageRequest(page, pageSize);
-//		    
-//			peopleDAO.findAll(pageable);
-			
-//	    	List<AbstractSelectOption> retorno = new ArrayList<AbstractSelectOption>();
-//	    	retorno.add(new AbstractSelectOption("Fernanda"));
-//	    	retorno.add(new AbstractSelectOption("Daniel"));
-//	    	retorno.add(new AbstractSelectOption("Raquel"));
-//	    	retorno.add(new AbstractSelectOption("Thiago"));
-
-//	    	
-			Session session = null;
-			if (HibernateUtil.getSessionFactory().isClosed()){
-				session = HibernateUtil.getSessionFactory().openSession();
-			} else {
-				session = HibernateUtil.getSessionFactory().getCurrentSession();
-			}
-			
-			session.beginTransaction();
-//			
-	    	List<AbstractSelectOption> retorno = mapFromPeople(session.createCriteria(PeopleBean.class).list());
-//	    	tx.commit();
+			retorno = mapFromPeople(peopleDAO.list());
 			return setResponseWithCacheHeaders(Status.OK, gsonBuilder.toJson(retorno), request);
 		} catch (Exception e) {
 			logger.error("Exception ", e);			

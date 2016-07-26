@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
+
+	<!-- http://commons.apache.org/proper/commons-dbcp/configuration.html -->
 	<Resource name="jdbc/fairydb" auth="Container" type="javax.sql.DataSource"
 		maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="fairy_user"
 		password="september2017" driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/fairydb" />
+		url="jdbc:mysql://localhost:3306/fairydb" removeAbandonedOnBorrow="true"
+		removeAbandonedOnMaintenance="true" removeAbandonedTimeout="60"
+		logAbandoned="true" />
+
+	<!-- https://musingsinjava.wordpress.com/2014/11/02/enabling-jsf-2-2-and-cdi-1-2-on-tomcat-8/ -->
+	<!-- Resource name="BeanManager" auth="Container"
+		type="javax.enterprise.inject.spi.BeanManager" factory="org.jboss.weld.resources.ManagerObjectFactory" /-->
 </Context>
+

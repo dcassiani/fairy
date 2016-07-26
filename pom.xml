@@ -48,6 +48,30 @@
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- Provided by Tomcat 8, but needed for compilation -->
+		<!-- dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency-->
+		<!-- JBoss/Weld Refrence Implementation for CDI on a Servlet Container -->
+		<!-- dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>2.3.5.Final</version>
+			<scope>runtime</scope>
+		</dependency-->
+		<!-- dependency>
+			<groupId>org.jboss</groupId>
+			<artifactId>jandex</artifactId>
+			<version>2.0.2.Final</version>
+		</dependency-->
+		<!-- dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-tomcat-support</artifactId>
+			<version>1.0.1-Final</version>
+		</dependency-->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
