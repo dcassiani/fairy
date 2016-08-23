@@ -1,40 +1,27 @@
 CREATE DATABASE `fairydb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+
 CREATE TABLE `tb_content` (
   `idContent` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `isPublished` char(1) NOT NULL DEFAULT 'Y',
   `owner` varchar(45) DEFAULT NULL,
+  `title` varchar(140) NOT NULL,
   PRIMARY KEY (`idContent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tb_img` (
-  `idImg` int(11) NOT NULL AUTO_INCREMENT,
-  `alt` varchar(250) DEFAULT NULL,
-  `src` varchar(250) NOT NULL,
-  `title` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`idImg`),
-  UNIQUE KEY `idImg_UNIQUE` (`idImg`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tb_meta_content` (
-  `idMeta` int(11) NOT NULL AUTO_INCREMENT,
-  `idContent` int(11) NOT NULL,
-  `idImg` int(11) DEFAULT NULL,
-  `idText` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idMeta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tb_pessoa` (
-  `idPerson` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(250) NOT NULL,
-  PRIMARY KEY (`idPerson`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE `tb_template` (
   `idTemplate` int(11) NOT NULL AUTO_INCREMENT,
-  `idTypeTemplate` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
+  `templateType` varchar(30) NOT NULL,
   `isPublished` char(1) NOT NULL DEFAULT 'Y',
-  `qt_img` int(11) NOT NULL DEFAULT '0',
-  `qt_text` int(11) NOT NULL DEFAULT '1',
+  `qtImg` int(11) NOT NULL,
+  `qtText` int(11) NOT NULL,
+  `layoutInclude` varchar(400) NOT NULL,
   PRIMARY KEY (`idTemplate`),
   UNIQUE KEY `idTemplate_UNIQUE` (`idTemplate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE `tb_text` (
   `idText` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT NULL,
@@ -43,10 +30,31 @@ CREATE TABLE `tb_text` (
   PRIMARY KEY (`idText`),
   UNIQUE KEY `idText_UNIQUE` (`idText`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tb_type_template` (
-  `id` int(11) NOT NULL,
-  `type` varchar(140) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `type_UNIQUE` (`type`)
+
+
+CREATE TABLE `tb_img` (
+  `idImg` int(11) NOT NULL AUTO_INCREMENT,
+  `alt` varchar(250) DEFAULT NULL,
+  `src` varchar(250) NOT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idImg`),
+  UNIQUE KEY `idImg_UNIQUE` (`idImg`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `tb_meta_content` (
+  `idMeta` int(11) NOT NULL AUTO_INCREMENT,
+  `idContent` int(11) NOT NULL,
+  `idImg` int(11) DEFAULT NULL,
+  `idText` int(11) DEFAULT NULL,
+  `layoutPosition` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idMeta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `tb_pessoa` (
+  `idPerson` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(250) NOT NULL,
+  PRIMARY KEY (`idPerson`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
