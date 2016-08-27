@@ -33,4 +33,20 @@ public abstract class AbstractResources {
 	    builder.cacheControl(cc);
 	    return builder.build();
 	}
+	
+	
+	protected Response setResponse(Status status, Request request){
+
+	    ResponseBuilder builder = request.evaluatePreconditions();
+
+	    if (builder == null){
+		    if (Status.OK.equals(status)){
+		    	builder = Response.ok();
+		    } else {
+		    	builder = Response.status(status);
+		    }
+	    } 
+
+	    return builder.build();
+	}
 }

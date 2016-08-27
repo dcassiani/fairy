@@ -16,5 +16,7 @@
 	        <property name="show_sql">true</property>
 	        
 	         <mapping class="br.com.codeslingers.beans.PeopleBean"/>
+	         <mapping class="br.com.codeslingers.beans.ContentBean"/>
+	         <mapping class="br.com.codeslingers.beans.content.TemplateBean"/>
 	    </session-factory>
 	</hibernate-configuration>
