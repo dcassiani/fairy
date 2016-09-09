@@ -6,6 +6,7 @@ CREATE TABLE `tb_content` (
   `isPublished` char(1) NOT NULL DEFAULT 'Y',
   `owner` varchar(45) DEFAULT NULL,
   `title` varchar(140) NOT NULL,
+  `idTemplate` int(11) DEFAULT NULL,
   PRIMARY KEY (`idContent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -56,5 +57,5 @@ CREATE TABLE `tb_pessoa` (
   `idPerson` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(250) NOT NULL,
   PRIMARY KEY (`idPerson`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
