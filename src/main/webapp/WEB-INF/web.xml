@@ -28,7 +28,21 @@
 		<servlet-name>REST-resources-servlet</servlet-name>
 		<url-pattern>/service/*</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet>
+		<servlet-name>admin-resources</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>br.com.codeslingers.admin</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin-resources</servlet-name>
+		<url-pattern>/secure/admin/*</url-pattern>
+	</servlet-mapping>
+	
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
@@ -36,5 +50,6 @@
 
 	<welcome-file-list>
 		<welcome-file>fairy.jsp</welcome-file>
+		<welcome-file>template-insert.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

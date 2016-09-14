@@ -3,19 +3,24 @@ package br.com.codeslingers.beans;
 import java.io.Serializable;
 
 import javax.enterprise.inject.Model;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.com.codeslingers.beans.content.TemplateBean;
 
 @Model
 @Entity
 @Table(name="tb_content")
-public class ContentBean  implements Serializable{
-	private static final long serialVersionUID = 8963372908393367636L;
-	
+public class ContentTemplateBean  implements Serializable{
+	private static final long serialVersionUID = -3843913745588479802L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer idContent;
@@ -29,8 +34,9 @@ public class ContentBean  implements Serializable{
 	@Column
 	private String title;
 
-	@Column
-	private Integer idTemplate;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "idTemplate")
+	private TemplateBean template;
 
 	public Integer getIdContent() {
 		return idContent;
@@ -64,13 +70,12 @@ public class ContentBean  implements Serializable{
 		this.title = title;
 	}
 
-	public Integer getIdTemplate() {
-		return idTemplate;
+	public TemplateBean getTemplate() {
+		return template;
 	}
 
-	public void setIdTemplate(Integer idTemplate) {
-		this.idTemplate = idTemplate;
+	public void setTemplate(TemplateBean template) {
+		this.template = template;
 	}
-
 
 }
